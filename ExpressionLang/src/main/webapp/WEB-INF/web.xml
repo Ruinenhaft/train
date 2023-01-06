@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<context-param><!-- 전역, 즉 모든 서블릿에서 사용할수 있는 파라미터. -->
+	<param-name>db_name</param-name>
+	<param-value>malldb</param-value>
+</context-param>
+<servlet>
+	<servlet-name>dbname-jsp</servlet-name>
+	<jsp-file>/Init.jsp</jsp-file>
+	<init-param><!-- 지정해준 서블릿 내에서만 쓸 수 있는 값. -->
+		<param-name>db_name</param-name>
+		<param-value>malldb</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>dbname-jsp</servlet-name>
+	<url-pattern>/Init.jsp</url-pattern>
+</servlet-mapping>
+</web-app>
