@@ -14,7 +14,7 @@ def page_count(target):
         return 5
     else:
         return len(pages)
-def scrapper(target):
+def indeed_scrapper(target):
     pages = page_count(target)
     result = []
 
@@ -31,17 +31,17 @@ def scrapper(target):
             mosaic = job_value.find("div", class_="mosaic-zone")
             if mosaic == None:
                 title_list_span = job_value.find_all("span")
+                url_list_a = job_value.find_all("a")
                 company_title = title_list_span[0]
                 company_name = job_value.find("span", class_="companyName")
                 company_location = job_value.find("div", class_="companyLocation")
+                url_list = url_list_a[0]
+                company_url = url_list['href']
                 results = {
-                    "company_title":company_title.string,
-                    "company_name":company_name.string,
-                    "company_location":company_location.string
+                    "company_title":company_title.string.replace(","," "),
+                    "company_name":company_name.string.replace(","," "),
+                    "company_location":company_location.string.replace(","," "),
+                    "company_url":f"https://kr.indeed.com{company_url}"
                 }
                 result.append(results)
     return result
-
-
-result = scrapper("python")
-print(result)
